@@ -1,11 +1,13 @@
 
 const express = require('express');
 const session = require('express-session');
+const store = require('connect-pg-simple')
 
 const app = express();
 
 app.set('view engine', 'pug');
 app.use(session({
+  store: new (store(session))(),
   secret: 'top-secret-key',
   resave: false,
   saveUninitialized: false,
